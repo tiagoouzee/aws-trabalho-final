@@ -1,0 +1,75 @@
+-- teste.team definition
+
+CREATE TABLE `team` (
+  `id` int NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `Localidade` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- teste.player definition
+
+CREATE TABLE `player` (
+  `id` int NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `datanascimento` date NOT NULL,
+  `pais` varchar(100) NOT NULL,
+  `idteam` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- teste.transfer definition
+
+CREATE TABLE `transfer` (
+  `idTeamOrigin` int NOT NULL,
+  `idTeamDestiny` int NOT NULL,
+  `datetransfer` datetime NOT NULL,
+  `id` int NOT NULL,
+  `valueTransfer` decimal(10,0) NOT NULL,
+  `idPlayer` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- teste.tournament definition
+
+CREATE TABLE `tournament` (
+  `id` int NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `dateStart` datetime NOT NULL,
+  `dateEnd` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- teste.participant definition
+
+CREATE TABLE `participant` (
+  `idTournament` int NOT NULL,
+  `idTeam` int NOT NULL,
+  PRIMARY KEY (`idTournament`,`idTeam`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- teste.`match` definition
+
+CREATE TABLE `match` (
+  `id` int NOT NULL,
+  `idTournament` int NOT NULL,
+  `idTeamPrincipal` int NOT NULL,
+  `idTeamVisitor` int NOT NULL,
+  `dateMatch` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- teste.event definition
+
+CREATE TABLE `event` (
+  `id` int NOT NULL,
+  `typeEvents` varchar(100) NOT NULL,
+  `idMatch` int NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `idTeamGeneratorEvents` int DEFAULT NULL,
+  `dateEvent` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
